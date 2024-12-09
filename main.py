@@ -2,6 +2,7 @@
 from imports import *
 from funciones import *
 import pygame.mixer as mixer
+from archivo import *
 
 
 pygame.init()
@@ -17,6 +18,8 @@ continuar = jugador (tamaño_boton_continuar, (1000,300), ima_continuar)
 
 cantar_truco = boton ((100,500),tamaño_boton_truco, (azul, rojo), ("TRUCO"), (blanco))
 
+ver_lista_player = boton ((700,500),tamaño_boton_truco, (azul, rojo), ("LISTA"), (blanco))
+
 
 #mixer.music.load('imagenes\Truco.ogg')
 #mixer.music.set_volume(1)
@@ -24,6 +27,9 @@ cantar_truco = boton ((100,500),tamaño_boton_truco, (azul, rojo), ("TRUCO"), (b
 
 puntajes = sistemas_puntaje(jugador_1, jugador_2)
 
+#for i in range (len(player)):
+ #    nom = []
+  #   nom[i] = boton ((700,(300+ i*10)),tamaño_boton_truco, (azul), (player[i]), (blanco))
 
 
 #-----------------------------
@@ -43,7 +49,7 @@ clock = pygame.time.Clock()
 mano = 1
 punto = 0
 truco = 1
-jugador_1 = 29
+jugador_1 = 0
 jugador_2 = 0
 
 
@@ -116,6 +122,11 @@ while run == True:
 
     pantalla.blit (puntajes[1].texto, (660, 42))
 
+     #lista de jugadores
+    pantalla.blit (ver_lista_player.superficie, ver_lista_player.rec)
+    pantalla.blit (ver_lista_player.texto, (660, 492))
+
+
 
 
    
@@ -127,6 +138,11 @@ while run == True:
               cantar_truco.superficie.fill(cantar_truco.color_colision)
          else:
               cantar_truco.superficie.fill(cantar_truco.color) 
+          
+         if ver_lista_player.rec.collidepoint(evento.pos):
+              ver_lista_player.superficie.fill(ver_lista_player.color_colision)
+         else:
+              ver_lista_player.superficie.fill(ver_lista_player.color)
 
 
     if evento.type == pygame.MOUSEBUTTONDOWN:
@@ -137,6 +153,16 @@ while run == True:
                  #mixer.music.play()
                  truco = 2
                  cantar = True
+
+            if ver_lista_player.rec.collidepoint(evento.pos):
+                 
+                 print (player)
+               # for i in range (len(player)):
+                    #  pantalla.blit (nom[i].superficie, nom[i].rec)
+                    # pantalla.blit (nom[i].texto, (660, (292+i*10)))
+                 
+                 
+                 
             
 
            
@@ -222,7 +248,11 @@ while run == True:
          
          resultado = calcular_ganador (jugador_1, jugador_2)
          
-         pantalla.fill(rojo)
+         if resultado == ("GANASTE"):
+               pantalla.fill(verde)
+
+         elif resultado ==("PERDISTE"):
+              pantalla.fill(rojo)
 
          print (resultado)
 

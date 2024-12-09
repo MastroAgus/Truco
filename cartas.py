@@ -14,6 +14,7 @@ for valor in valores:
             "poder": truco[valor]})
 
 
+
 random.shuffle(mazo)
 
 

@@ -28,6 +28,7 @@ def puntos_totales (puntos: int, truco:int, jugador1_p: int, jugador2_p: int) ->
         
     elif puntos < 0:
             total[1] += truco
+
         
     return total
 
@@ -52,9 +53,15 @@ def repartir (mazo:list) -> tuple:
     #-----------------------------
 
     #---------oponente-----------------
-    ima_card4 = (f"cartas/{(mazo[3]["valor"])} de {(mazo[3]["palo"])}.jpg")
-    ima_card5 = (f"cartas/{(mazo[4]["valor"])} de {(mazo[4]["palo"])}.jpg")
-    ima_card6 = (f"cartas/{(mazo[5]["valor"])} de {(mazo[5]["palo"])}.jpg")
+
+    mano_opo = (mazo[3:6])
+    orden_cartas = sorted (mano_opo,key= lambda mano_opo: mano_opo["poder"], reverse = True)
+    
+
+
+    ima_card4 = (f"cartas/{(orden_cartas[0]["valor"])} de {(orden_cartas[0]["palo"])}.jpg")
+    ima_card5 = (f"cartas/{(orden_cartas[1]["valor"])} de {(orden_cartas[1]["palo"])}.jpg")
+    ima_card6 = (f"cartas/{(orden_cartas[2]["valor"])} de {(orden_cartas[2]["palo"])}.jpg")
 
 
 
