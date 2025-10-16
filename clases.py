@@ -70,20 +70,7 @@ class boton:
         self.texto = fuente.render (texto, True, color_letras)
     
 
-class lista:
-    def __init__(self, origen, tamaño, colores, lista, color_letras):
 
-        self.superficie = pygame.Surface(tamaño)
-        self.color = colores[0]
-        self.color_colision = colores[1]
-        self.superficie.fill(self.color)
-        self.rec = self.superficie.get_rect()
-        self.rec.center = origen
-
-        texto = lista[0]
-
-        fuente = pygame.font.Font(None,32)
-        self.texto = fuente.render (texto, True, color_letras)
 
 
 

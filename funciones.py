@@ -72,7 +72,7 @@ def repartir (mazo:list) -> tuple:
     card6 = jugador ((tamaño_cartas), (290,-100), (ima_card6))
 
     #-----------------------------
-    return card1, card2, card3, card4, card5, card6
+    return card1, card2, card3, card4, card5, card6 
 
 
 def sistemas_puntaje(jugador_1, jugador_2):
@@ -100,3 +100,9 @@ def calcular_ganador (jugador_1, jugador_2):
 
     
 
+# Función para dibujar texto centrado
+def dibujar_texto(texto, fuente, color, superficie, x, y):
+    render = fuente.render(texto, True, color)
+    rect = render.get_rect(center=(x, y))
+    superficie.blit(render, rect)
+    return rect

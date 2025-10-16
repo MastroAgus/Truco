@@ -18,7 +18,7 @@ for valor in valores:
 random.shuffle(mazo)
 
 
-
+ 
  
 
 
