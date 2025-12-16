@@ -1,5 +1,7 @@
 import pygame
 import sys
+from funciones import *
+from variables import *
 
 # Inicializar pygame
 pygame.init()
@@ -18,12 +20,7 @@ AZUL = (0, 120, 255)
 # Fuente
 fuente = pygame.font.SysFont("Arial", 50)
 
-# Función para dibujar texto centrado
-def dibujar_texto(texto, fuente, color, superficie, x, y):
-    render = fuente.render(texto, True, color)
-    rect = render.get_rect(center=(x, y))
-    superficie.blit(render, rect)
-    return rect
+
 
 # Funciones del menú
 def menu_principal():

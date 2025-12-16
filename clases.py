@@ -70,7 +70,7 @@ class boton:
         self.texto = fuente.render (texto, True, color_letras)
     
 
-
+ 
 
 
 

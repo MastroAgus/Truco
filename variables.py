@@ -26,12 +26,17 @@ tamaño_puntaje = ((170, 35))
 run = True
 
 cantar = False
+tanto = False
 
 mano = 1
 punto = 0
 truco = 1
 jugador_1 = 0
 jugador_2 = 0
+envido = 2
+resultado_tanto = ""
 
-
+ARCHIVO = "personas.csv"
  
+
+  

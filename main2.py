@@ -1,7 +1,10 @@
+
 from imports import *
 from funciones import *
 import pygame.mixer as mixer
+import sys
 from registro import *
+from test import *
 
 pygame.init()
 mixer.init()
@@ -18,13 +21,20 @@ cantar_truco = boton ((100,500),tamaño_boton_truco, (azul, rojo), ("TRUCO"), (b
 
 cantar_envido = boton ((650,500),tamaño_boton_truco, (azul, rojo), ("ENVIDO"), (blanco))
 
+#teet
+xd = ""
+test = boton((ancho//2,alto//2),tamaño_boton_continuar, (azul, rojo), (xd), (blanco))
+
+#teeet
+
+
+fuente = pygame.font.SysFont("Arial", 50)
 
 #mixer.music.load('imagenes\Truco.ogg')
 #mixer.music.set_volume(1)
 
 
 puntajes = sistemas_puntaje(jugador_1, jugador_2)
-
 
 
 
@@ -45,8 +55,13 @@ clock = pygame.time.Clock()
 mano = 1
 punto = 0
 truco = 1
-jugador_1 = 0
-jugador_2 = 0
+jugador_1 = 30
+jugador_2 = 29
+
+#contador_mensaje = 0
+#mostrar_mensaje = False
+
+
 
 
 while run == True:
@@ -56,13 +71,12 @@ while run == True:
 
     mano_player2 = [mazo[3],mazo[4],mazo[5]]
 
-    
-
     if mano == 0:
 
           #Muestra como va el marcador
           #reparte las cartas
           #restablece los valores en default
+          
 
           puntajes = sistemas_puntaje(jugador_1, jugador_2)
           continuar.mover(mano)
@@ -78,7 +92,7 @@ while run == True:
           cantar = False
 
           mano = 1
-          
+
           mano_player1 = [mazo[0],mazo[1],mazo[2]]
 
           mano_player2 = [mazo[3],mazo[4],mazo[5]]
@@ -86,6 +100,7 @@ while run == True:
           envido = 2 
 
           tanto = False
+         
          
  
     for evento in pygame.event.get():
@@ -120,11 +135,15 @@ while run == True:
 
     pantalla.blit (cantar_truco.texto, (60, 492))
 
-     #boton envido
+#add
     pantalla.blit (cantar_envido.superficie,cantar_envido.rec)
 
     pantalla.blit (cantar_envido.texto, (610, 492))
 
+    pantalla.blit (test.superficie,test.rec)
+    pantalla.blit (test.texto, (ancho//2-40,alto//2 +8 ))
+
+#dda
      #puntaje
     pantalla.blit (puntajes[0].superficie,puntajes[0].rec)
 
@@ -141,13 +160,13 @@ while run == True:
          if cantar_truco.rec.collidepoint(evento.pos):
               cantar_truco.superficie.fill(cantar_truco.color_colision)
          else:
-              cantar_truco.superficie.fill(cantar_truco.color) 
-          
+              cantar_truco.superficie.fill(cantar_truco.color)
+#add
          if cantar_envido.rec.collidepoint(evento.pos):
               cantar_envido.superficie.fill(cantar_envido.color_colision)
          else:
               cantar_envido.superficie.fill(cantar_envido.color)
-
+#dda
 
     if evento.type == pygame.MOUSEBUTTONDOWN:
             
@@ -158,41 +177,44 @@ while run == True:
                  truco = 2
                  cantar = True
 
-                 
+#add
             if cantar_envido.rec.collidepoint(evento.pos) and tanto == False:
                
-                 print (mano_player1)
-                 print (mano_player2)
+               print (mano_player1)
+               print (mano_player2)
 
               
                
              
 
-                 gano_envido = ganador_envido(mano_player1, mano_player2)    
-                    #print("Ganador del envido:", ganador_envido(mano_player1, mano_player2))
+               gano_envido = ganador_envido(mano_player1, mano_player2)    
+               #print("Ganador del envido:", ganador_envido(mano_player1, mano_player2))
 
-                 if gano_envido == ("Jugador 1"):
-                         jugador_1 += envido
-                         print ((jugador_1))
+               if gano_envido == ("Jugador 1"):
+                    jugador_1 += envido
+                    print ((jugador_1))
 
                     
-                         resultado_tanto = dibujar_texto ("GANASTE ENVIDO", fuente, negro, pantalla, ancho//2, 100 )
+                    resultado_tanto = dibujar_texto ("GANASTE ENVIDO", fuente, negro, pantalla, ancho//2, 100 )
+
+                    
                     
                
-                 elif gano_envido == ("Jugador 2"):
-                         jugador_2 += envido
-                         print ((jugador_2))
+               elif gano_envido == ("Jugador 2"):
+                    jugador_2 += envido
+                    print ((jugador_2))
 
-                         resultado_tanto = dibujar_texto ("PERDISTE ENVIDO", fuente, negro, pantalla, ancho//2, 100 )
+                    resultado_tanto = dibujar_texto ("PERDISTE ENVIDO", fuente, negro, pantalla, ancho//2, 100 )
                
-                 elif gano_envido == ("Empate"):
-                         print ("empate")
+               elif gano_envido == ("Empate"):
+                    print ("empate")
 
-                         resultado_tanto = dibujar_texto ("EMPATASTE ENVIDO", fuente, negro, pantalla, ancho//2, 100 )
+                    resultado_tanto = dibujar_texto ("EMPATASTE ENVIDO", fuente, negro, pantalla, ancho//2, 100 )
 
 
-                 tanto = True   
+               tanto = True     
 
+#dda
            
             if cartas[0].rec.collidepoint(evento.pos):
                  
@@ -261,7 +283,8 @@ while run == True:
                     
                     if jugador_1 >= 30 or jugador_2 >= 30:
 
-                         mano = 5    
+                         mano = 5 
+                         texto = ""   
                     else: 
                          continuar.mover(mano)
                     
@@ -271,7 +294,7 @@ while run == True:
                       
                               mano = 0
             
-          
+              
     while mano == 5:
          
                resultado = calcular_ganador (jugador_1, jugador_2)
@@ -299,11 +322,8 @@ while run == True:
                print (resultado) 
 
 
-
         
           
                
 
-    pygame.display.update()
-
-pygame.quit()
+    pygame.display.flip()
